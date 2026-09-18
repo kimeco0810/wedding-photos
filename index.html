@@ -4,464 +4,603 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>저희 결혼합니다</title>
+  <title>저희, 결혼했습니다</title>
 
   <style>
-* {
-  box-sizing: border-box;
-}
+    /* ========================================
+       문체부 쓰기 정체
+       ======================================== */
 
-html {
-  background: #f5f3f0;
-  scroll-behavior: smooth;
-}
+    @font-face {
+      font-family: "MunchebuWriting";
+      src: url("./fonts/MunchebuWritingJeongche.ttf")
+           format("truetype");
 
-body {
-  margin: 0;
-  padding: 0;
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
 
-  color: #55504d;
-  background: #fff;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Apple SD Gothic Neo",
-    "Noto Sans KR",
-    "Noto Sans JP",
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
+    /* ========================================
+       기본 설정
+       ======================================== */
 
-  line-height: 1.9;
-  -webkit-font-smoothing: antialiased;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* =========================
-   전체 페이지
-   ========================= */
+    html {
+      background: #f5f3f0;
+      scroll-behavior: smooth;
+    }
 
-.page {
-  width: min(100%, 760px);
-  min-height: 100vh;
+    body {
+      margin: 0;
+      padding: 0;
 
-  margin: 0 auto;
+      background: #fff;
 
-  background: #fff;
+      color: #514c48;
 
-  overflow: hidden;
-}
+      font-family:
+        "MunchebuWriting",
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        sans-serif;
 
+      font-weight: normal;
 
-/* =========================
-   메인 사진
-   ========================= */
+      line-height: 1.9;
 
-.photo {
-  display: block;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-  width: 100%;
-  height: auto;
 
-  object-fit: cover;
-}
+    /* ========================================
+       전체 페이지
+       ======================================== */
 
+    .page {
+      width: min(100%, 760px);
+      min-height: 100vh;
 
-/* =========================
-   본문 영역
-   ========================= */
+      margin: 0 auto;
 
-.content {
-  position: relative;
+      background: #fff;
 
-  padding: 56px 28px 90px;
+      overflow: hidden;
+    }
 
-  text-align: center;
 
-  background:
-    linear-gradient(
-      to bottom,
-      #ffffff 0%,
-      #fffdfb 100%
-    );
-}
+    /* ========================================
+       메인 사진
+       ======================================== */
 
+    .photo {
+      display: block;
 
-/* 위쪽에 아주 얇은 장식선 */
+      width: 100%;
+      height: auto;
 
-.content::before {
-  content: "";
+      animation:
+        photoAppear 1.2s ease-out both;
+    }
 
-  display: block;
 
-  width: 42px;
-  height: 1px;
+    /* ========================================
+       본문 영역
+       ======================================== */
 
-  margin: 0 auto 38px;
+    .content {
+      position: relative;
 
-  background: #c8bfb6;
-}
+      padding: 52px 28px 90px;
 
+      text-align: center;
 
-/* =========================
-   언어 선택 버튼
-   ========================= */
+      background:
+        linear-gradient(
+          to bottom,
+          #ffffff 0%,
+          #fffdfb 100%
+        );
 
-.language {
-  display: flex;
+      animation:
+        contentAppear 1s ease-out 0.2s both;
+    }
 
-  justify-content: center;
-  align-items: center;
 
-  gap: 7px;
+    /* 위쪽 장식선 */
 
-  margin-bottom: 42px;
-}
+    .content::before {
+      content: "";
 
-.language button {
-  appearance: none;
+      display: block;
 
-  padding: 5px 14px;
+      width: 42px;
+      height: 1px;
 
-  border: 1px solid #dedad6;
-  border-radius: 20px;
+      margin: 0 auto 36px;
 
-  background: transparent;
+      background: #c8bfb6;
+    }
 
-  color: #99928c;
 
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 400;
+    /* ========================================
+       언어 선택
+       ======================================== */
 
-  letter-spacing: 0.03em;
+    .language {
+      display: flex;
 
-  cursor: pointer;
+      justify-content: center;
+      align-items: center;
 
-  transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease;
-}
+      gap: 8px;
 
-.language button:hover {
-  border-color: #bdb5ae;
-  color: #706963;
-}
+      margin-bottom: 42px;
+    }
 
-.language button:active {
-  transform: scale(0.96);
-}
+    .language button {
+      appearance: none;
 
-.language button.active {
-  border-color: #706963;
-  background: #706963;
-  color: #fff;
-}
+      padding: 6px 15px;
 
+      border: 1px solid #dedad6;
+      border-radius: 20px;
 
-/* =========================
-   제목
-   ========================= */
+      background: transparent;
 
-.title {
-  margin: 0 0 42px;
+      color: #8c8580;
 
-  color: #403b38;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: normal;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+      line-height: 1.4;
 
-  font-size: 25px;
-  font-weight: 400;
+      cursor: pointer;
 
-  line-height: 1.5;
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease;
+    }
 
-  letter-spacing: 0.1em;
-}
+    .language button:hover {
+      border-color: #bdb5ae;
+      color: #6d6762;
+    }
 
+    .language button:active {
+      transform: scale(0.96);
+    }
 
-/* =========================
-   본문
-   ========================= */
+    .language button.active {
+      border-color: #706963;
 
-.message {
-  max-width: 600px;
+      background: #706963;
 
-  margin: 0 auto;
+      color: #fff;
+    }
 
-  color: #5e5955;
 
-  font-size: 15px;
-  font-weight: 400;
+    /* ========================================
+       제목
+       ======================================== */
 
-  line-height: 2.05;
+    .title {
+      margin: 0 0 44px;
 
-  letter-spacing: -0.015em;
+      color: #403b38;
 
-  word-break: keep-all;
-}
+      font-family:
+        "MunchebuWriting",
+        serif;
 
-.message p {
-  margin: 0 0 36px;
-}
+      font-size: 30px;
+      font-weight: normal;
 
-.message p:last-child {
-  margin-bottom: 0;
-}
+      line-height: 1.5;
 
+      letter-spacing: 0.04em;
+    }
 
-/* =========================
-   마지막 인사
-   ========================= */
 
-.closing {
-  position: relative;
+    /* ========================================
+       본문
+       ======================================== */
 
-  margin-top: 58px;
-  padding-top: 48px;
+    .message {
+      max-width: 610px;
 
-  color: #77706a;
+      margin: 0 auto;
 
-  font-size: 14px;
-  line-height: 2;
+      color: #514c48;
 
-  letter-spacing: -0.01em;
-}
+      font-family:
+        "MunchebuWriting",
+        serif;
 
+      font-size: 18px;
+      font-weight: normal;
 
-/* closing 위 장식 */
+      line-height: 2.15;
 
-.closing::before {
-  content: "❧";
+      letter-spacing: 0;
 
-  position: absolute;
+      word-break: keep-all;
+    }
 
-  top: 0;
-  left: 50%;
+    .message p {
+      margin: 0 0 38px;
+    }
 
-  transform: translateX(-50%);
+    .message p:last-child {
+      margin-bottom: 0;
+    }
 
-  color: #aaa19a;
 
-  font-family: serif;
-  font-size: 17px;
-}
+    /* ========================================
+       마지막 인사
+       ======================================== */
 
+    .closing {
+      position: relative;
 
-/* =========================
-   이름
-   ========================= */
+      margin-top: 58px;
 
-.names {
-  margin-top: 42px;
+      padding-top: 48px;
 
-  color: #494440;
+      color: #706963;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+      font-family:
+        "MunchebuWriting",
+        serif;
 
-  font-size: 16px;
-  font-weight: 400;
+      font-size: 17px;
+      font-weight: normal;
 
-  letter-spacing: 0.1em;
-}
+      line-height: 2.15;
 
+      letter-spacing: 0;
+    }
 
-/* =========================
-   일본어
-   ========================= */
 
-.ja {
-  letter-spacing: 0;
-}
+    /* 장식 */
 
-.ja .title {
-  letter-spacing: 0.08em;
-}
+    .closing::before {
+      content: "❧";
 
-.ja .message {
-  line-height: 2.15;
-  letter-spacing: 0;
-}
+      position: absolute;
 
-.ja .closing {
-  line-height: 2.15;
-  letter-spacing: 0;
-}
+      top: 0;
+      left: 50%;
 
+      transform: translateX(-50%);
 
-/* =========================
-   부드러운 등장 애니메이션
-   ========================= */
+      color: #aaa19a;
 
-.photo {
-  display: block;
-  width: 100%;
-  height: auto;
+      font-family: serif;
 
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 88%,
-    rgba(0, 0, 0, 0.7) 94%,
-    transparent 100%
-  );
+      font-size: 17px;
+    }
 
-  mask-image: linear-gradient(
-    to bottom,
-    #000 88%,
-    rgba(0, 0, 0, 0.7) 94%,
-    transparent 100%
-  );
-}
 
-.content {
-  animation: contentAppear 1s ease-out 0.25s both;
-}
+    /* ========================================
+       이름
+       ======================================== */
 
-@keyframes photoAppear {
-  from {
-    opacity: 0;
-  }
+    .names {
+      margin-top: 42px;
 
-  to {
-    opacity: 1;
-  }
-}
+      color: #46413e;
 
-@keyframes contentAppear {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
+      font-family:
+        "MunchebuWriting",
+        serif;
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      font-size: 19px;
+      font-weight: normal;
 
+      line-height: 1.6;
 
-/* =========================
-   모바일
-   ========================= */
+      letter-spacing: 0.06em;
+    }
 
-@media (max-width: 599px) {
 
-  .content {
-    padding:
-      48px
-      24px
-      75px;
-  }
+    /* ========================================
+       일본어
+       ======================================== */
 
-  .title {
-    font-size: 23px;
-    margin-bottom: 38px;
-  }
+    .ja {
+      letter-spacing: 0;
+    }
 
-  .message {
-    font-size: 14px;
-    line-height: 2.05;
-  }
+    .ja .title {
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
 
-  .message p {
-    margin-bottom: 32px;
-  }
+      font-size: 27px;
 
-  .closing {
-    margin-top: 52px;
-    padding-top: 45px;
+      letter-spacing: 0.04em;
+    }
 
-    font-size: 13px;
-  }
+    .ja .message {
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
 
-  .names {
-    margin-top: 38px;
-    font-size: 15px;
-  }
-}
+      font-size: 17px;
 
+      line-height: 2.2;
 
-/* =========================
-   태블릿 / PC
-   ========================= */
+      letter-spacing: 0;
+    }
 
-@media (min-width: 600px) {
+    .ja .closing {
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
 
-  body {
-    padding: 30px 0;
-  }
+      font-size: 16px;
 
-  .page {
-    box-shadow:
-      0 10px 50px rgba(60, 50, 40, 0.08);
-  }
+      line-height: 2.2;
+    }
 
-  .content {
-    padding:
-      70px
-      70px
-      100px;
-  }
-}
+    .ja .names {
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+    }
+
+
+    /* ========================================
+       애니메이션
+       ======================================== */
+
+    @keyframes photoAppear {
+
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+
+    }
+
+    @keyframes contentAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+
+    /* ========================================
+       모바일
+       ======================================== */
+
+    @media (max-width: 599px) {
+
+      .content {
+        padding:
+          46px
+          23px
+          76px;
+      }
+
+
+      .content::before {
+        margin-bottom: 34px;
+      }
+
+
+      .language {
+        margin-bottom: 40px;
+      }
+
+
+      .language button {
+        padding: 6px 14px;
+
+        font-size: 12px;
+      }
+
+
+      .title {
+        margin-bottom: 40px;
+
+        font-size: 27px;
+
+        line-height: 1.55;
+      }
+
+
+      .message {
+        font-size: 17px;
+
+        line-height: 2.15;
+      }
+
+
+      .message p {
+        margin-bottom: 36px;
+      }
+
+
+      .closing {
+        margin-top: 54px;
+
+        padding-top: 46px;
+
+        font-size: 16px;
+
+        line-height: 2.15;
+      }
+
+
+      .names {
+        margin-top: 38px;
+
+        font-size: 18px;
+      }
+
+
+      .ja .title {
+        font-size: 25px;
+      }
+
+
+      .ja .message {
+        font-size: 16px;
+
+        line-height: 2.2;
+      }
+
+
+      .ja .closing {
+        font-size: 15px;
+
+        line-height: 2.2;
+      }
+
+    }
+
+
+    /* ========================================
+       태블릿 / PC
+       ======================================== */
+
+    @media (min-width: 600px) {
+
+      body {
+        padding: 30px 0;
+      }
+
+
+      .page {
+        box-shadow:
+          0 10px 50px
+          rgba(60, 50, 40, 0.08);
+      }
+
+
+      .content {
+        padding:
+          70px
+          70px
+          100px;
+      }
+
+    }
+
   </style>
 </head>
+
 
 <body>
 
   <main class="page">
 
-    <!-- wedding.jpg 파일을 저장소 루트에 올려주세요 -->
+    <!-- ======================================
+         사진
+         ====================================== -->
+
     <img
       class="photo"
       src="./wedding.jpg"
-      alt="결혼을 앞둔 두 사람의 사진"
+      alt="결혼한 두 사람의 사진"
     >
+
 
     <section class="content">
 
-      <!-- 언어 선택 -->
+
+      <!-- ====================================
+           언어 선택
+           ==================================== -->
+
       <div class="language">
-        <button id="koBtn" class="active" onclick="showLanguage('ko')">
+
+        <button
+          id="koBtn"
+          class="active"
+          onclick="showLanguage('ko')"
+        >
           한국어
         </button>
 
-        <button id="jaBtn" onclick="showLanguage('ja')">
+        <button
+          id="jaBtn"
+          onclick="showLanguage('ja')"
+        >
           日本語
         </button>
+
       </div>
 
 
-      <!-- ==================== 한국어 ==================== -->
+      <!-- ====================================
+           한국어
+           ==================================== -->
 
-      <div id="ko" class="language-content">
+      <div
+        id="ko"
+        class="language-content"
+      >
 
-        <h1 class="title">저희 결혼합니다</h1>
+        <h1 class="title">
+          저희, 결혼했습니다
+        </h1>
+
 
         <div class="message">
 
           <p>
-            한국 청주에서 온 남자와 일본 센다이에서 온 여자가<br>
+            한국 청주에서 온 남자와<br>
+            일본 센다이에서 온 여자가<br>
             도쿄에서 만나 부부가 되었습니다.
           </p>
+
 
           <p>
             함께하는 동안 많이 웃었고,<br>
             때로는 서로에게 큰 위로가 되어주었습니다.
           </p>
 
+
           <p>
             앞으로의 남은 인생도<br>
             서로의 부족하고 모난 부분까지 사랑스럽게 여기며<br>
             친구 같은 부부로 재미있게 살아보려 합니다.
           </p>
+
 
           <p>
             소중한 분들을 한자리에 모시고<br>
@@ -470,10 +609,12 @@ body {
             결혼식은 따로 올리지 않기로 했습니다.
           </p>
 
+
           <p>
             그래서 이렇게 사진과 함께<br>
             저희의 소식을 간단히 전합니다.
           </p>
+
 
           <p>
             직접 찾아뵙고 인사드리지 못하는 점<br>
@@ -482,10 +623,14 @@ body {
 
         </div>
 
+
         <div class="closing">
+
           보내주시는 축하와 따뜻한 마음,<br>
           평생 소중히 간직하며 잘 살아가겠습니다.
+
         </div>
+
 
         <div class="names">
           김경재 · 김뮤우
@@ -494,11 +639,20 @@ body {
       </div>
 
 
-      <!-- ==================== 日本語 ==================== -->
+      <!-- ====================================
+           日本語
+           ==================================== -->
 
-      <div id="ja" class="language-content ja" style="display: none;">
+      <div
+        id="ja"
+        class="language-content ja"
+        style="display: none;"
+      >
 
-        <h1 class="title">私たち、結婚しました</h1>
+        <h1 class="title">
+          私たち、結婚しました
+        </h1>
+
 
         <div class="message">
 
@@ -508,11 +662,13 @@ body {
             このたび夫婦となりました。
           </p>
 
+
           <p>
             一緒に過ごす中でたくさん笑い、<br>
             時にはお互いに大きな支えとなりながら<br>
             今日まで歩んできました。
           </p>
+
 
           <p>
             これからの人生も、<br>
@@ -522,6 +678,7 @@ body {
             過ごしていけたらと思っています。
           </p>
 
+
           <p>
             本来であれば、大切な皆さまにお集まりいただき、<br>
             お祝いしていただく場を設けるところですが、<br>
@@ -529,11 +686,13 @@ body {
             結婚式は行わないことにいたしました。
           </p>
 
+
           <p>
             そのため、こうして写真とともに<br>
             私たちの結婚のご報告を<br>
             簡単ではありますがお届けさせていただきます。
           </p>
+
 
           <p>
             直接お会いしてご挨拶できないこと、<br>
@@ -542,11 +701,15 @@ body {
 
         </div>
 
+
         <div class="closing">
+
           皆さまからいただくお祝いと温かいお気持ちを<br>
           これからも大切に胸に刻み、<br>
           二人で仲良く歩んでいきたいと思います。
+
         </div>
+
 
         <div class="names">
           金 敬宰 · 金 未悠
@@ -560,34 +723,63 @@ body {
 
 
   <script>
-    function showLanguage(language) {
-      const ko = document.getElementById("ko");
-      const ja = document.getElementById("ja");
 
-      const koBtn = document.getElementById("koBtn");
-      const jaBtn = document.getElementById("jaBtn");
+    function showLanguage(language) {
+
+      const ko =
+        document.getElementById("ko");
+
+      const ja =
+        document.getElementById("ja");
+
+      const koBtn =
+        document.getElementById("koBtn");
+
+      const jaBtn =
+        document.getElementById("jaBtn");
+
 
       if (language === "ko") {
+
         ko.style.display = "block";
+
         ja.style.display = "none";
 
+
         koBtn.classList.add("active");
+
         jaBtn.classList.remove("active");
 
-        document.documentElement.lang = "ko";
-        document.title = "저희 결혼합니다";
 
-      } else {
+        document.documentElement.lang = "ko";
+
+        document.title =
+          "저희, 결혼했습니다";
+
+      }
+
+
+      else {
+
         ko.style.display = "none";
+
         ja.style.display = "block";
 
+
         koBtn.classList.remove("active");
+
         jaBtn.classList.add("active");
 
+
         document.documentElement.lang = "ja";
-        document.title = "私たち、結婚しました";
+
+        document.title =
+          "私たち、結婚しました";
+
       }
+
     }
+
   </script>
 
 </body>
