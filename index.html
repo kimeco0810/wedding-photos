@@ -246,7 +246,7 @@
 
       letter-spacing: 0;
 
-      word-break: keep-all; /* 한국어는 단어 단위 줄바꿈 유지 */
+      word-break: keep-all;
     }
 
     .message p {
@@ -358,9 +358,8 @@
       line-height: 2.2;
 
       letter-spacing: 0;
-      
-      /* 아이폰 일본어 마침표 잘림 현상 방지 */
-      word-break: normal; 
+
+      word-break: normal;
       overflow-wrap: break-word;
     }
 
@@ -390,44 +389,115 @@
        ======================================== */
 
     .gallery {
-      margin-top: 80px;
+      margin-top: 70px;
       width: 100%;
+    }
+
+    .gallery-container {
+      position: relative;
+      display: flex;
+      align-items: center;
     }
 
     .gallery-track {
       display: flex;
       gap: 16px;
-      padding: 10px 0 24px; /* 그림자 및 스크롤 여백 */
+      padding: 10px 0 20px;
       
       overflow-x: auto;
-      scroll-snap-type: x mandatory; /* 스와이프 시 사진에 착 달라붙게 설정 */
+      scroll-snap-type: x mandatory;
       
-      /* 스크롤바 숨기기 */
-      -ms-overflow-style: none; /* IE, Edge */
-      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     .gallery-track::-webkit-scrollbar {
-      display: none; /* Chrome, Safari 스크롤바 숨기기 */
+      display: none;
     }
 
     .gallery-track img {
-      flex: 0 0 85%; /* 한 화면에 사진 하나가 85% 차지 (다음 사진 살짝 보이게) */
+      flex: 0 0 85%;
       max-width: 400px;
       height: auto;
       object-fit: cover;
       
-      border-radius: 12px; /* 모서리 둥글게 */
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* 부드러운 그림자 */
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       
-      scroll-snap-align: center; /* 스크롤 시 중앙 정렬 */
+      scroll-snap-align: center;
     }
 
-    /* 첫 번째와 마지막 사진 좌우 여백 확보 */
     .gallery-track::before,
     .gallery-track::after {
       content: "";
-      flex: 0 0 7.5%; /* (100 - 85) / 2 */
+      flex: 0 0 7.5%;
+    }
+
+    /* 슬라이드 화살표 버튼 */
+    .gallery-btn {
+      position: absolute;
+      top: calc(50% - 10px);
+      transform: translateY(-50%);
+      z-index: 5;
+
+      width: 38px;
+      height: 38px;
+
+      border: 1px solid #dedad6;
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.88);
+      color: #706963;
+
+      font-size: 20px;
+      line-height: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .gallery-btn:hover {
+      background: #fff;
+      color: #403b38;
+    }
+
+    .gallery-btn:active {
+      transform: translateY(-50%) scale(0.92);
+    }
+
+    .prev-btn {
+      left: 12px;
+    }
+
+    .next-btn {
+      right: 12px;
+    }
+
+    /* 스와이프 안내 문구 */
+    .gallery-hint {
+      margin-top: 10px;
+
+      color: #8c8580;
+
+      font-size: 14px;
+      font-weight: normal;
+
+      letter-spacing: -0.01em;
+    }
+
+    .ja-hint {
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+      font-size: 13px;
     }
 
 
@@ -555,7 +625,15 @@
       }
       
       .gallery {
-        margin-top: 60px;
+        margin-top: 54px;
+      }
+
+      .prev-btn {
+        left: 6px;
+      }
+
+      .next-btn {
+        right: 6px;
       }
 
     }
@@ -587,13 +665,14 @@
       }
 
       .gallery-track img {
-        flex: 0 0 70%; /* PC에서는 사진을 조금 더 작게 보이도록 조정 */
+        flex: 0 0 70%;
       }
       
       .gallery-track::before,
       .gallery-track::after {
         flex: 0 0 15%;
       }
+
     }
 
   </style>
@@ -799,16 +878,59 @@
            ==================================== -->
 
       <div class="gallery">
-        <div class="gallery-track">
-          <!-- 경로(src)를 실제 사진 파일명으로 변경해주세요 -->
-          <img src="./gallery1.jpg" alt="결혼 사진 1">
-          <img src="./gallery2.jpg" alt="결혼 사진 2">
-          <img src="./gallery3.jpg" alt="결혼 사진 3">
-          <img src="./gallery4.jpg" alt="결혼 사진 4">
-          <img src="./gallery5.jpg" alt="결혼 사진 5">
-          <img src="./gallery6.jpg" alt="결혼 사진 6">
-          <img src="./gallery7.jpg" alt="결혼 사진 7">
+
+        <div class="gallery-container">
+
+          <button
+            type="button"
+            class="gallery-btn prev-btn"
+            onclick="scrollGallery(-1)"
+            aria-label="이전 사진"
+          >
+            ‹
+          </button>
+
+          <div
+            id="galleryTrack"
+            class="gallery-track"
+          >
+            <img src="./gallery1.jpg" alt="결혼 사진 1">
+            <img src="./gallery2.jpg" alt="결혼 사진 2">
+            <img src="./gallery3.jpg" alt="결혼 사진 3">
+            <img src="./gallery4.jpg" alt="결혼 사진 4">
+            <img src="./gallery5.jpg" alt="결혼 사진 5">
+            <img src="./gallery6.jpg" alt="결혼 사진 6">
+            <img src="./gallery7.jpg" alt="결혼 사진 7">
+          </div>
+
+          <button
+            type="button"
+            class="gallery-btn next-btn"
+            onclick="scrollGallery(1)"
+            aria-label="다음 사진"
+          >
+            ›
+          </button>
+
         </div>
+
+
+        <!-- 스와이프 안내 문구 (언어별 자동 전환) -->
+        <p
+          id="koHint"
+          class="gallery-hint"
+        >
+          ‹ 좌우로 스와이프하여 더 많은 사진을 보실 수 있습니다 ›
+        </p>
+
+        <p
+          id="jaHint"
+          class="gallery-hint ja-hint"
+          style="display: none;"
+        >
+          ‹ 左右にスワイプして写真をご覧いただけます ›
+        </p>
+
       </div>
 
     </section>
@@ -832,12 +954,23 @@
       const jaBtn =
         document.getElementById("jaBtn");
 
+      const koHint =
+        document.getElementById("koHint");
+
+      const jaHint =
+        document.getElementById("jaHint");
+
 
       if (language === "ko") {
 
         ko.style.display = "block";
 
         ja.style.display = "none";
+
+
+        koHint.style.display = "block";
+
+        jaHint.style.display = "none";
 
 
         koBtn.classList.add("active");
@@ -860,6 +993,11 @@
         ja.style.display = "block";
 
 
+        koHint.style.display = "none";
+
+        jaHint.style.display = "block";
+
+
         koBtn.classList.remove("active");
 
         jaBtn.classList.add("active");
@@ -871,6 +1009,36 @@
           "私たち、結婚しました";
 
       }
+
+    }
+
+
+    /* 갤러리 이전/다음 버튼 스크롤 이동 */
+    function scrollGallery(direction) {
+
+      const track =
+        document.getElementById("galleryTrack");
+
+      if (!track) return;
+
+      const firstImg =
+        track.querySelector("img");
+
+      if (!firstImg) return;
+
+
+      /* 사진 너비 + 여백(16px) 만큼 스크롤 */
+      const scrollAmount =
+        firstImg.offsetWidth + 16;
+
+
+      track.scrollBy({
+
+        left: direction * scrollAmount,
+
+        behavior: "smooth"
+
+      });
 
     }
 
