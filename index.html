@@ -246,7 +246,7 @@
 
       letter-spacing: 0;
 
-      word-break: keep-all;
+      word-break: keep-all; /* 한국어는 단어 단위 줄바꿈 유지 */
     }
 
     .message p {
@@ -327,7 +327,7 @@
 
 
     /* ========================================
-       일본어
+       일본어 특화 스타일
        ======================================== */
 
     .ja {
@@ -358,6 +358,10 @@
       line-height: 2.2;
 
       letter-spacing: 0;
+      
+      /* 아이폰 일본어 마침표 잘림 현상 방지 */
+      word-break: normal; 
+      overflow-wrap: break-word;
     }
 
     .ja .closing {
@@ -378,6 +382,52 @@
         "Yu Gothic",
         "Meiryo",
         sans-serif;
+    }
+
+
+    /* ========================================
+       갤러리 (슬라이드)
+       ======================================== */
+
+    .gallery {
+      margin-top: 80px;
+      width: 100%;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 16px;
+      padding: 10px 0 24px; /* 그림자 및 스크롤 여백 */
+      
+      overflow-x: auto;
+      scroll-snap-type: x mandatory; /* 스와이프 시 사진에 착 달라붙게 설정 */
+      
+      /* 스크롤바 숨기기 */
+      -ms-overflow-style: none; /* IE, Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .gallery-track::-webkit-scrollbar {
+      display: none; /* Chrome, Safari 스크롤바 숨기기 */
+    }
+
+    .gallery-track img {
+      flex: 0 0 85%; /* 한 화면에 사진 하나가 85% 차지 (다음 사진 살짝 보이게) */
+      max-width: 400px;
+      height: auto;
+      object-fit: cover;
+      
+      border-radius: 12px; /* 모서리 둥글게 */
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* 부드러운 그림자 */
+      
+      scroll-snap-align: center; /* 스크롤 시 중앙 정렬 */
+    }
+
+    /* 첫 번째와 마지막 사진 좌우 여백 확보 */
+    .gallery-track::before,
+    .gallery-track::after {
+      content: "";
+      flex: 0 0 7.5%; /* (100 - 85) / 2 */
     }
 
 
@@ -503,6 +553,10 @@
 
         line-height: 2.2;
       }
+      
+      .gallery {
+        margin-top: 60px;
+      }
 
     }
 
@@ -532,6 +586,14 @@
           100px;
       }
 
+      .gallery-track img {
+        flex: 0 0 70%; /* PC에서는 사진을 조금 더 작게 보이도록 조정 */
+      }
+      
+      .gallery-track::before,
+      .gallery-track::after {
+        flex: 0 0 15%;
+      }
     }
 
   </style>
@@ -729,6 +791,24 @@
           金 敬宰 · 金 未悠
         </div>
 
+      </div>
+
+
+      <!-- ====================================
+           갤러리 (슬라이드)
+           ==================================== -->
+
+      <div class="gallery">
+        <div class="gallery-track">
+          <!-- 경로(src)를 실제 사진 파일명으로 변경해주세요 -->
+          <img src="./gallery1.jpg" alt="결혼 사진 1">
+          <img src="./gallery2.jpg" alt="결혼 사진 2">
+          <img src="./gallery3.jpg" alt="결혼 사진 3">
+          <img src="./gallery4.jpg" alt="결혼 사진 4">
+          <img src="./gallery5.jpg" alt="결혼 사진 5">
+          <img src="./gallery6.jpg" alt="결혼 사진 6">
+          <img src="./gallery7.jpg" alt="결혼 사진 7">
+        </div>
       </div>
 
     </section>
