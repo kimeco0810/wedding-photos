@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>저희 결혼합니다</title>
+
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f5f3f0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  color: #55504d;
+  background: #fff;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   전체 페이지
+   ========================= */
+
+.page {
+  width: min(100%, 760px);
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  background: #fff;
+
+  overflow: hidden;
+}
+
+
+/* =========================
+   메인 사진
+   ========================= */
+
+.photo {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+}
+
+
+/* =========================
+   본문 영역
+   ========================= */
+
+.content {
+  position: relative;
+
+  padding: 56px 28px 90px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff 0%,
+      #fffdfb 100%
+    );
+}
+
+
+/* 위쪽에 아주 얇은 장식선 */
+
+.content::before {
+  content: "";
+
+  display: block;
+
+  width: 42px;
+  height: 1px;
+
+  margin: 0 auto 38px;
+
+  background: #c8bfb6;
+}
+
+
+/* =========================
+   언어 선택 버튼
+   ========================= */
+
+.language {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 42px;
+}
+
+.language button {
+  appearance: none;
+
+  padding: 5px 14px;
+
+  border: 1px solid #dedad6;
+  border-radius: 20px;
+
+  background: transparent;
+
+  color: #99928c;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 400;
+
+  letter-spacing: 0.03em;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.language button:hover {
+  border-color: #bdb5ae;
+  color: #706963;
+}
+
+.language button:active {
+  transform: scale(0.96);
+}
+
+.language button.active {
+  border-color: #706963;
+  background: #706963;
+  color: #fff;
+}
+
+
+/* =========================
+   제목
+   ========================= */
+
+.title {
+  margin: 0 0 42px;
+
+  color: #403b38;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.1em;
+}
+
+
+/* =========================
+   본문
+   ========================= */
+
+.message {
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  color: #5e5955;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  line-height: 2.05;
+
+  letter-spacing: -0.015em;
+
+  word-break: keep-all;
+}
+
+.message p {
+  margin: 0 0 36px;
+}
+
+.message p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================
+   마지막 인사
+   ========================= */
+
+.closing {
+  position: relative;
+
+  margin-top: 58px;
+  padding-top: 48px;
+
+  color: #77706a;
+
+  font-size: 14px;
+  line-height: 2;
+
+  letter-spacing: -0.01em;
+}
+
+
+/* closing 위 장식 */
+
+.closing::before {
+  content: "❧";
+
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #aaa19a;
+
+  font-family: serif;
+  font-size: 17px;
+}
+
+
+/* =========================
+   이름
+   ========================= */
+
+.names {
+  margin-top: 42px;
+
+  color: #494440;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 16px;
+  font-weight: 400;
+
+  letter-spacing: 0.1em;
+}
+
+
+/* =========================
+   일본어
+   ========================= */
+
+.ja {
+  letter-spacing: 0;
+}
+
+.ja .title {
+  letter-spacing: 0.08em;
+}
+
+.ja .message {
+  line-height: 2.15;
+  letter-spacing: 0;
+}
+
+.ja .closing {
+  line-height: 2.15;
+  letter-spacing: 0;
+}
+
+
+/* =========================
+   부드러운 등장 애니메이션
+   ========================= */
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 88%,
+    rgba(0, 0, 0, 0.7) 94%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    #000 88%,
+    rgba(0, 0, 0, 0.7) 94%,
+    transparent 100%
+  );
+}
+
+.content {
+  animation: contentAppear 1s ease-out 0.25s both;
+}
+
+@keyframes photoAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================
+   모바일
+   ========================= */
+
+@media (max-width: 599px) {
+
+  .content {
+    padding:
+      48px
+      24px
+      75px;
+  }
+
+  .title {
+    font-size: 23px;
+    margin-bottom: 38px;
+  }
+
+  .message {
+    font-size: 14px;
+    line-height: 2.05;
+  }
+
+  .message p {
+    margin-bottom: 32px;
+  }
+
+  .closing {
+    margin-top: 52px;
+    padding-top: 45px;
+
+    font-size: 13px;
+  }
+
+  .names {
+    margin-top: 38px;
+    font-size: 15px;
+  }
+}
+
+
+/* =========================
+   태블릿 / PC
+   ========================= */
+
+@media (min-width: 600px) {
+
+  body {
+    padding: 30px 0;
+  }
+
+  .page {
+    box-shadow:
+      0 10px 50px rgba(60, 50, 40, 0.08);
+  }
+
+  .content {
+    padding:
+      70px
+      70px
+      100px;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- wedding.jpg 파일을 저장소 루트에 올려주세요 -->
+    <img
+      class="photo"
+      src="./wedding.jpg"
+      alt="결혼을 앞둔 두 사람의 사진"
+    >
+
+    <section class="content">
+
+      <!-- 언어 선택 -->
+      <div class="language">
+        <button id="koBtn" class="active" onclick="showLanguage('ko')">
+          한국어
+        </button>
+
+        <button id="jaBtn" onclick="showLanguage('ja')">
+          日本語
+        </button>
+      </div>
+
+
+      <!-- ==================== 한국어 ==================== -->
+
+      <div id="ko" class="language-content">
+
+        <h1 class="title">저희 결혼합니다</h1>
+
+        <div class="message">
+
+          <p>
+            한국 청주에서 온 남자와 일본 센다이에서 온 여자가<br>
+            도쿄에서 만나 부부가 되었습니다.
+          </p>
+
+          <p>
+            함께하는 동안 많이 웃었고,<br>
+            때로는 서로에게 큰 위로가 되어주었습니다.
+          </p>
+
+          <p>
+            앞으로의 남은 인생도<br>
+            서로의 부족하고 모난 부분까지 사랑스럽게 여기며<br>
+            친구 같은 부부로 재미있게 살아보려 합니다.
+          </p>
+
+          <p>
+            소중한 분들을 한자리에 모시고<br>
+            축하받는 자리를 마련하는 것이 마땅하지만,<br>
+            저희 두 사람의 뜻에 따라<br>
+            결혼식은 따로 올리지 않기로 했습니다.
+          </p>
+
+          <p>
+            그래서 이렇게 사진과 함께<br>
+            저희의 소식을 간단히 전합니다.
+          </p>
+
+          <p>
+            직접 찾아뵙고 인사드리지 못하는 점<br>
+            너그러운 마음으로 이해해 주시면 감사하겠습니다.
+          </p>
+
+        </div>
+
+        <div class="closing">
+          보내주시는 축하와 따뜻한 마음,<br>
+          평생 소중히 간직하며 잘 살아가겠습니다.
+        </div>
+
+        <div class="names">
+          김경재 · 김뮤우
+        </div>
+
+      </div>
+
+
+      <!-- ==================== 日本語 ==================== -->
+
+      <div id="ja" class="language-content ja" style="display: none;">
+
+        <h1 class="title">私たち、結婚しました</h1>
+
+        <div class="message">
+
+          <p>
+            韓国・清州（チョンジュ）出身の彼と、<br>
+            日本・仙台出身の彼女が東京で出会い、<br>
+            このたび夫婦となりました。
+          </p>
+
+          <p>
+            一緒に過ごす中でたくさん笑い、<br>
+            時にはお互いに大きな支えとなりながら<br>
+            今日まで歩んできました。
+          </p>
+
+          <p>
+            これからの人生も、<br>
+            お互いの足りないところや不器用なところも<br>
+            愛おしく受け止めながら、<br>
+            友達のように仲良く、楽しく<br>
+            過ごしていけたらと思っています。
+          </p>
+
+          <p>
+            本来であれば、大切な皆さまにお集まりいただき、<br>
+            お祝いしていただく場を設けるところですが、<br>
+            私たち二人の希望により、<br>
+            結婚式は行わないことにいたしました。
+          </p>
+
+          <p>
+            そのため、こうして写真とともに<br>
+            私たちの結婚のご報告を<br>
+            簡単ではありますがお届けさせていただきます。
+          </p>
+
+          <p>
+            直接お会いしてご挨拶できないこと、<br>
+            どうか温かくご理解いただけましたら幸いです。
+          </p>
+
+        </div>
+
+        <div class="closing">
+          皆さまからいただくお祝いと温かいお気持ちを<br>
+          これからも大切に胸に刻み、<br>
+          二人で仲良く歩んでいきたいと思います。
+        </div>
+
+        <div class="names">
+          金 敬宰 · 金 未悠
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+    function showLanguage(language) {
+      const ko = document.getElementById("ko");
+      const ja = document.getElementById("ja");
+
+      const koBtn = document.getElementById("koBtn");
+      const jaBtn = document.getElementById("jaBtn");
+
+      if (language === "ko") {
+        ko.style.display = "block";
+        ja.style.display = "none";
+
+        koBtn.classList.add("active");
+        jaBtn.classList.remove("active");
+
+        document.documentElement.lang = "ko";
+        document.title = "저희 결혼합니다";
+
+      } else {
+        ko.style.display = "none";
+        ja.style.display = "block";
+
+        koBtn.classList.remove("active");
+        jaBtn.classList.add("active");
+
+        document.documentElement.lang = "ja";
+        document.title = "私たち、結婚しました";
+      }
+    }
+  </script>
+
+</body>
+</html>
