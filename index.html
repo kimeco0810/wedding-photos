@@ -221,6 +221,9 @@
       line-height: 1.5;
 
       letter-spacing: 0.04em;
+      
+      word-break: keep-all;
+      text-wrap: keep-all;
     }
 
 
@@ -247,6 +250,7 @@
       letter-spacing: 0;
 
       word-break: keep-all;
+      text-wrap: keep-all;
     }
 
     .message p {
@@ -281,6 +285,10 @@
       line-height: 2.15;
 
       letter-spacing: 0;
+
+      /* 단어 단위 줄바꿈 추가 (니다. 홀로 넘어가는 현상 방지) */
+      word-break: keep-all;
+      text-wrap: keep-all;
     }
 
 
@@ -323,6 +331,9 @@
       line-height: 1.6;
 
       letter-spacing: 0.06em;
+      
+      word-break: keep-all;
+      text-wrap: keep-all;
     }
 
 
@@ -772,7 +783,7 @@
 
 
           <p>
-            직접 찾아뵙고 인사드리지 못하는 점<br>
+            직접 찾아뵙고 인사드리지 못하는&nbsp;점<br>
             너그러운 마음으로 이해해 주시면 감사하겠습니다.
           </p>
 
